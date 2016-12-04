@@ -7,16 +7,47 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
-    
-    <script src="w3data.js"></script>
-    
+       
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     
     <script>
-    // Put John's template engine code here...
+    // Simple JavaScript Templating
+    // John Resig – http://ejohn.org/ – MIT Licensed
+    (function(){
+    var cache = {};
+
+    this.tmpl = function tmpl(str, data){
+    // Figure out if we’re getting a template, or if we need to
+    // load the template – and be sure to cache the result.
+    var fn = !/\W/.test(str) ?
+    cache[str] = cache[str] ||
+    tmpl(document.getElementById(str).innerHTML) :
+
+    // Generate a reusable function that will serve as a template
+    // generator (and which will be cached).
+    new Function(“obj”,
+    “var p=[],print=function(){p.push.apply(p,arguments);};” +
+
+    // Introduce the data as local variables using with(){}
+    “with(obj){p.push(‘” +
+
+    // Convert the template into pure JavaScript
+    str
+    .replace(/[\r\t\n]/g, ” “)
+    .split(“<%").join("\t") .replace(/((^|%>)[^\t]*)’/g, “$1\r”)
+    .replace(/\t=(.*?)%>/g, “‘,$1,'”)
+    .split(“\t”).join(“‘);”)
+    .split(“%>”).join(“p.push(‘”)
+    .split(“\r”).join(“\\'”)
+    + “‘);}return p.join(”);”);
+
+    // Provide some basic currying to the user
+    return data ? fn( data ) : fn;
+    };
+    })();
     // A hash to store our routes:
     var routes = {};
     //
@@ -71,17 +102,18 @@
         
       </header>
       <section>
+        <p>testing router</p>
         <div id="view"></div>
-        <script>
-          route('/', 'home', function () {});
-          route('/page1', 'template1', function () {
-            this.greeting = 'Hello world!';
-              this.moreText = 'Bacon ipsum...';
-          });
-          route('/page2', 'template2', function () {
-            this.heading = 'I\'m page two!';
-          });
-        </script>
+          <script>
+            route('/', 'home', function () {});
+            route('/page1', 'template1', function () {
+              this.greeting = 'Hello world!';
+                this.moreText = 'Bacon ipsum...';
+            });
+            route('/page2', 'template2', function () {
+              this.heading = 'I\'m page two!';
+            });
+          </script>
       </section>
       <footer>
         <p><small>Amy Pickup, Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
