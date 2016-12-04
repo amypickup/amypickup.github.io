@@ -56,49 +56,35 @@
     
   </head>
   <body>
-    
-    <ul>
-    <li><a href="#">Home</a></li>
-    <li><a href="#/page1">Page 1</a></li>
-    <li><a href="#/page2">Page 2</a></li>
-  </ul>
-  <div id="view"></div>
-  <script>
-    route('/', 'home', function () {});
-    route('/page1', 'template1', function () {
-      this.greeting = 'Hello world!';
-        this.moreText = 'Bacon ipsum...';
-    });
-    route('/page2', 'template2', function () {
-      this.heading = 'I\'m page two!';
-    });
-  </script>
-    
     <div class="wrapper">
       <header>
         <h1>Amypickup.GitHub.io</h1>
         <p></p>
-
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#/page1">Page 1</a></li>
+          <li><a href="#/page2">Page 2</a></li>
+        </ul>
 
         <p class="view"><a href="https://github.com/amypickup">View My GitHub Profile</a></p>
 
         
       </header>
       <section>
-        <p>amypickup.github.io</p>
-
-        <p>My Github user page is at: 
-        <a href="https://github.com/amypickup/">https://github.com/amypickup/</a></p>
-
-        <p>My Github Pages repo can be found at:<br>
-        <a href="https://github.com/amypickup/amypickup.github.io/">https://github.com/amypickup/amypickup.github.io/</a></p>
-
-        <p>And, soon, you can see my customized homepage at:</p>
-
-        <p><a href="http://amypickup.github.io/">http://amypickup.github.io/</a></p>
+        <div id="view"></div>
+        <script>
+          route('/', 'home', function () {});
+          route('/page1', 'template1', function () {
+            this.greeting = 'Hello world!';
+              this.moreText = 'Bacon ipsum...';
+          });
+          route('/page2', 'template2', function () {
+            this.heading = 'I\'m page two!';
+          });
+        </script>
       </section>
       <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+        <p><small>Amy Pickup, Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
