@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Amypickup.GitHub.io/portfolio by amypickup</title>
+    <title>Amy Pickup</title>
 
-    <link rel="stylesheet" href="/stylesheets/styles.css">
-    <link rel="stylesheet" href="/stylesheets/github-light.css">
+    <link rel="stylesheet" href="../stylesheets/styles.css">
+    <link rel="stylesheet" href="../stylesheets/github-light.css">
     
-    <script src="../w3data.js"></script>
+    <script src="w3data.js"></script>
     
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
@@ -17,16 +17,93 @@
   </head>
   <body>
     <div class="wrapper">
-      <div w3-include-html="portfolio_header.html"></div> 
+      <header>       
+        <h1><a href="https://amypickup.github.io/">Amy Pickup</a></h1>
+
+        <p class="view"><a href="https://amypickup.github.io/portfolio/">Portfolio Home</a></p>
+
+        <p class="view"><button onclick="scrollWin('resistor')">Resistor Girl</button></p>
+
+        <p class="view"><button onclick="scrollWin('swe')">Society of Women Engineers</button></p>
+
+        <p class="view"><button onclick="scrollWin('fashioningcircuits')">Fashioning Circuits</button></p>
+
+        <p class="view"><button onclick="scrollWin('visualization')">Vehicle Sensor Data Visualizations</button></p>
+
+        <p class="view"><button onclick="scrollWin('trainingsimulation')">Training Simulations</button></p>
+
+      </header>
       
-      <section>
-        Section
+      <section id="resistor">
+
+        <h1>Resistor Girl</h1>
+        <p>I directed the organization of a three-day camp to introduce new technology to girls that combine concepts from the disciplines of engineering, computer science, fashion and design. The aim: to empower girls with the ability to make an informed choice about their future by exposing them to new technologies that interest them.</p>
+        <p>The three core building blocks of developing this event:</p>
+        <ol>
+          <li>Research &amp; Development: Gaining a strong understanding of the LilyPad Arduino, how to engage girls in the development of LilyPad Arduino projects, planning volunteer and participant engagement</li>
+          <li>Event &amp; Team Organization: Finding participants, volunteers, sponsorship and local support through a great network and the use of social media&nbsp;</li>
+          <li>Going Forward: For those interested in starting up their own workshops, a handy online guide to explain the process</li>
+        </ol>
+        <div>
+        <b>Links</b>
+          <div style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;">
+          <a href="http://3.bp.blogspot.com/-spI5SBpQNHk/VhAqWVQqKsI/AAAAAAAAACg/ZuN4TWNebps/s1600/7769161778_b284e6882d_o.jpg" imageanchor="1" style="clear: left; display: inline !important; margin-bottom: 1em; margin-right: 1em;">Etiquette Creative - Electronic Fashion Camp</a><br />
+          <a href="http://www.etiquettecreative.org/">http://www.etiquettecreative.org/</a><br />
+          <a href="https://www.facebook.com/EtiquetteCreative">Etiquette Creative on Facebook</a><br />
+          <a href="https://www.flickr.com/photos/amypickup/albums/72157631039891148">Finished Projects on Flickr</a>&nbsp;*&nbsp;<a href="https://www.flickr.com/photos/amypickup/albums/72157631039145094">Electronic Fashion Camp on Flickr</a></div>
+        </div>
       </section>
+
+      <section id="swe">
+
+        <h1>Society of Women Engineers</h1>
+        <p>I served as Chair of the 2010 Society of Women Engineers Region C Conference. Over the course of six months, &nbsp;I managed and supported several volunteer committees throughout the planning and execution of the conference. What came out was a three day conference with over 300 members in attendance.</p>
+        <ul>
+          <li>corporate sponsorship, worked with local and national companies to raise a $60,000 budget</li>
+          <li>vendor and hotel arrangements</li>
+          <li>tours and attractions</li>
+          <li>workshop sessions, meals, keynote dinner</li>
+          <li>registration and conference awareness campaigns</li>
+          <li>designed all materials (all program materials, conference swag, logo, t-shirts)&nbsp;</li>
+          <li>developed the conference website and maintained our social media presence</li>
+        </ul>
+                
+      </section>
+      
+      <section id="fashioningcircuits">
+        <h1>Fashioning Circuits</h1>
+
+      </section>
+      <section id="visualization">
+        <h1>Vehicle Sensor Data Visualization</h1>
+
+      </section>
+      <section id="trainingsimulation">
+        <h1>ATEC Simulation Lab, FPCT and NursingAP</h1>
+
+      </section>
+
       <footer>
         <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
     <script> w3IncludeHTML();</script>
+    <script>
+      function scrollWin(loc) {
+          window.scroll(0,findPos(document.getElementById(loc)));
+      };
+
+      //Finds y value of given object
+      function findPos(obj) {
+          var curtop = 0;
+          if (obj.offsetParent) {
+              do {
+                  curtop += obj.offsetTop;
+              } while (obj = obj.offsetParent);
+          return [curtop];
+          }
+      };
+    </script>
   </body>
 </html>
