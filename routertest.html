@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Building a router</title>
+  <script>
+  
+  // Simple JavaScript Templating
+// John Resig – http://ejohn.org/ – MIT Licensed
+(function(){
+var cache = {};
+
+this.tmpl = function tmpl(str, data){
+// Figure out if we’re getting a template, or if we need to
+// load the template – and be sure to cache the result.
+var fn = !/\W/.test(str) ?
+cache[str] = cache[str] ||
+tmpl(document.getElementById(str).innerHTML) :
+
+// Generate a reusable function that will serve as a template
+// generator (and which will be cached).
+new Function(“obj”,
+“var p=[],print=function(){p.push.apply(p,arguments);};” +
+
+// Introduce the data as local variables using with(){}
+“with(obj){p.push(‘” +
+
+// Convert the template into pure JavaScript
+str
+.replace(/[\r\t\n]/g, ” “)
+.split(“<%").join("\t") .replace(/((^|%>)[^\t]*)’/g, “$1\r”)
+.replace(/\t=(.*?)%>/g, “‘,$1,'”)
+.split(“\t”).join(“‘);”)
+.split(“%>”).join(“p.push(‘”)
+.split(“\r”).join(“\\'”)
++ “‘);}return p.join(”);”);
+
+// Provide some basic currying to the user
+return data ? fn( data ) : fn;
+};
+})();
+(function () {
+      // A hash to store our routes:
+      var routes = {};
+      // An array of the current route's events:
+      var events = [];
+      // The element where the routes are rendered:
+      var el = null;
+      // Context functions shared between all controllers:
+      var ctx = {
+        on: function (selector, evt, handler) {
+          events.push([selector, evt, handler]);
+        },
+        refresh: function (listeners) {
+          listeners.forEach(function (fn) { fn(); });
+        }
+      };
+      // Defines a route:
+      function route (path, templateId, controller) {
+        if (typeof templateId === 'function') {
+          controller = templateId;
+          templateId = null;
+        }
+        var listeners = [];
+        Object.defineProperty(controller.prototype, '$on', {value: ctx.on});
+        Object.defineProperty(controller.prototype, '$refresh', {value: ctx.refresh.bind(undefined, listeners)});
+        routes[path] = {templateId: templateId, controller: controller, onRefresh: listeners.push.bind(listeners)};
+      }
+      function forEachEventElement(fnName) {
+        for (var i = 0, len = events.length; i < len; i++) {
+          var els = el.querySelectorAll(events[i][0]);
+          for (var j = 0, elsLen = els.length; j < elsLen; j++) {
+            els[j][fnName].apply(els[j], events[i].slice(1));
+          }
+        }
+      }
+      function addEventListeners() {
+        forEachEventElement('addEventListener');
+      }
+      function removeEventListeners() {
+        forEachEventElement('removeEventListener');
+      }
+      function router () {
+        // Lazy load view element:
+        el = el || document.getElementById('view');
+        // Remove current event listeners:
+        removeEventListeners();
+        // Clear events, to prepare for next render:
+        events = [];
+        // Current route url (getting rid of '#' in hash as well):
+        var url = location.hash.slice(1) || '/';
+        // Get route by url or fallback if it does not exist:
+        var route = routes[url] || routes['*'];
+        // Do we have a controller:
+        if (route && route.controller) {
+          var ctrl = new route.controller();
+          if (!el || !route.templateId) {
+            // If there's nothing to render, abort:
+            return;
+          }
+          // Listen on route refreshes:
+          route.onRefresh(function () {
+            removeEventListeners();
+            // Render route template with John Resig's template engine:
+            el.innerHTML = tmpl(route.templateId, ctrl);
+            addEventListeners();
+          });
+          // Trigger the first refresh:
+          ctrl.$refresh();
+        }
+      }
+      // Listen on hash change:
+      this.addEventListener('hashchange', router);
+      // Listen on page load:
+      this.addEventListener('load', router);
+      // Expose the route register function:
+      this.route = route;
+    })();
+  </script>
+  <script type="text/html" id="home">
+    <h1>Router FTW!</h1>
+  </script>
+  <script type="text/html" id="template1">
+    <h1>Page 1: <%= greeting %></h1>
+    <p><%= moreText %></p>
+    <button class="my-button">Click me <%= counter %></button>
+  </script>
+  <script type="text/html" id="template2">
+    <h1>Page 2: <%= heading %></h1>
+    <p>Lorem ipsum...</p>
+  </script>
+  <script type="text/html" id="error404">
+    <h1>404 Not found</h1>
+  </script>
+</head>
+<body>
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#/page1">Page 1</a></li>
+    <li><a href="#/page2">Page 2</a></li>
+  </ul>
+  <div id="view"></div>
+  <script>
+    route('/', 'home', function () {});
+    route('/page1', 'template1', function () {
+      this.greeting = 'Hello world!';
+      this.moreText = 'Bacon ipsum...';
+      this.counter = 0;
+      this.$on('.my-button', 'click', function () {
+        this.counter += 1;
+        this.$refresh();
+      }.bind(this));
+    });
+    route('/page2', 'template2', function () {
+      this.heading = 'I\'m page two!';
+    });
+    route('*', 'error404', function () {});
+  </script>
+</body>
+</html>
