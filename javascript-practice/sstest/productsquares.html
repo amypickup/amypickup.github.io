@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+
+</style>
+</head>
+<body>
+	
+
+
+<script>
+/*
+outputValues();
+
+var values = ["a", "b", "c", "d"];
+
+function outputValues(values) {
+
+    for (var i = 0; i < values.length; i++) {
+        setTimeout(function() {
+            console.log("item " + i + " is " + values[i]);
+        }, i * 200);
+    }
+
+} */
+
+var f = applyFn(add);
+var result = f(3)(4);
+
+var applyFn = function(fn) {
+
+	if(fn == "add") {
+	return add(a,b);
+	}
+	if(fn == "multiply") {
+	return multiply(a,b);
+	}
+
+}
+
+</script>
+
+</body>
+</html>

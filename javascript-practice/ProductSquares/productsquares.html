@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+#button-container {
+	position: absolute;
+	top: 100px;
+	left: 300px;
+	height: 300px;
+	width: 203px;
+	z-index: 2;
+	-moz-box-shadow: 0 0 200px salmon;
+	-webkit-box-shadow: 0 0 200px salmon;
+	box-shadow: 0 0 200px salmon;
+}
+#left-arrow {
+	position: relative;
+	top: 50%;
+	left: -40px;
+	visibility:hidden;
+}
+#right-arrow {
+	float: right;
+	position: relative;
+ 	top: 50%;
+	left: 40px;
+}
+
+#outer-container{
+	background: lightpink;
+	position: absolute;
+	white-space: nowrap;
+	top: 100px;
+	left: 300px;
+}
+.inner-box {
+	display:inline-block;
+	border: 5px solid tomato;
+	padding: 15px;
+	margin: 20px;
+	height: 220px;
+	width: 120px;
+
+}
+
+</style>
+</head>
+<body>
+	
+	<div id="button-container">
+		<button type="button" id="left-arrow" onclick="move(0)">
+				Left Button
+		</button>
+		<button type="button" id="right-arrow" onclick="move(1);">
+			Right Button
+		</button>
+	</div>
+
+	<div id="outer-container">
+		<div class="inner-box">
+			Box 1
+		</div >
+		<div class="inner-box">
+			Box 2
+		</div>
+		<div class="inner-box">
+			Box 3
+		</div>
+		<div class="inner-box">
+			Box 4
+		</div>
+	</div>
+
+<script>
+
+var currentBox = 0;
+var boxLocs = ['300px', '97px', '-105px', '-309px'];
+
+function move(moveType) {
+	var outer = document.getElementById('outer-container');
+
+	if(moveType && currentBox < 3) {
+		currentBox++;
+	} else if (!moveType && currentBox > 0) {
+		currentBox--;
+	} 
+
+	console.log(currentBox + ' ' + boxLocs[currentBox]);
+
+	var left = document.getElementById('left-arrow');
+	var right = document.getElementById('right-arrow');
+
+	switch(currentBox) {
+		case 0:
+			left.style.visibility = 'hidden';
+			break;
+		case 1:
+			left.style.visibility = 'visible';
+			break;
+		case 2:
+			right.style.visibility = 'visible';
+			break;
+		case 3: 
+			right.style.visibility = 'hidden';
+			break;
+		default:
+			left.style.visibility = 'visible';
+			right.style.visibility = 'visible';
+	}
+	
+	outer.style.left = boxLocs[currentBox];
+
+};
+
+</script>
+</body>
+</html>

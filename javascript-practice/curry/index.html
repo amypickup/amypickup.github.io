@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+</head>
+<body>
+
+<h1></h1>	
+
+<script>
+
+
+
+
+var babyAnimals = function(a){
+	return function(b) {
+		var result = 'i love '.concat(a).concat(' and ').concat(b);
+		alert(result);
+		return result;
+	}
+}
+
+var babyKoala = babyAnimals('koalas');
+
+babyKoala('elephants');
+babyKoala('flamingos');
+babyKoala('dogs');
+
+</script>
+
+</body>
+</html>
