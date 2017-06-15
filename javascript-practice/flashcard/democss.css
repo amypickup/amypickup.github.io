@@ -1,0 +1,33 @@
+.block {
+	float: left;
+	background: red;
+	width: 300px;
+	height: 400px;
+	border: 1px solid black;
+}
+
+.insidebox {
+	background: white;
+	width: 250px;
+	height: 350px;
+	margin: 0 auto;
+}
+#bigbox {
+	position: absolute;
+}
+
+.buttonstyle {
+	position: absolute;
+	width: 300px;
+	top: 50%;
+	left: 50%;
+	margin-left: -150px;
+}
+
+.leftbutton {
+	float: left;
+}
+
+.rightbutton {
+	float: right;
+}
