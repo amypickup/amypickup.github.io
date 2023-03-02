@@ -1,0 +1,5 @@
+# Ignore artifacts
+javascripts
+node_modules
+portfolio
+stylesheets
