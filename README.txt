@@ -1,7 +1,7 @@
+# Template
 Alpha by HTML5 UP
 html5up.net | @ajlkn
 Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-
 
 A clean, super minimal responsive template geared towards startups, app devs, and other
 dedicated folks working tirelessly to launch their products. Includes a landing page,
@@ -22,7 +22,6 @@ PS: Not sure how to get that contact form working? Give formspree.io a try (it's
 
 
 Credits:
-
 	Demo Images:
 		Unsplash (unsplash.com)
 
