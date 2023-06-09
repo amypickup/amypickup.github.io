@@ -1,12 +1,6 @@
 @import url("fontawesome-all.min.css");
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,300italic,400italic");
 
-/*
-	Alpha by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
-
 /* Reset */
 
 /* Based on meyerweb.com/eric/tools/css/reset (v2.0 | 20110126 | License: public domain) */
@@ -105,12 +99,12 @@
 	}
 
 	body {
-		background: #f5f5f5;
+		background: black;
 	}
 
 	body, input, select, textarea {
 		color: #777;
-		font-family: "Source Sans Pro", sans-serif;
+		font-family: 'FangSong', 'STFangsong', sans-serif, "Helvetica Neue", HelveticaNeue, Arial, sans-serif;
 		font-size: 16pt;
 		font-weight: 300;
 		line-height: 1.65em;
@@ -146,7 +140,7 @@
 
 	h1, h2, h3, h4, h5, h6 {
 		color: #646464;
-		font-weight: 300;
+		font-weight: 600;
 		line-height: 1em;
 		margin: 0 0 0.5em 0;
 	}
@@ -2455,6 +2449,10 @@
 			display: block;
 		}
 
+    .image.avatar img {
+      width: 150px;
+    }
+
 		.image.left {
 			float: left;
 			padding: 0 1.5em 1em 0;
@@ -3161,12 +3159,12 @@
 /* Banner */
 
 	#banner {
-		background-attachment: scroll,							fixed;
-		background-color: #666;
-		background-image: url("images/overlay.png"), url("../../images/amyp.jpg");
+		background-attachment: scroll,fixed;
+		background-color: #000000;
+		/* background-image: url("images/overlay.png"), url("../../images/amyp.jpg"); 
 		background-position: top left,						center center;
 		background-repeat: repeat,							no-repeat;
-		background-size: auto,							cover;
+		background-size: auto,							cover; */
 		color: #fff;
 		padding: 12em 0 20em 0;
 		text-align: center;
